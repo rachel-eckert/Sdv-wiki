@@ -1,12 +1,13 @@
-/* Here is where you will configure the store 
+/* Here is where you will configure the store
 
-*/ 
+*/
 
 import { configureStore } from "@reduxjs/toolkit";
-
-
-const store = configureStore({
-  reducer: {}
+import characterReducer from "../reducers/characterSlice";
+import singleCharacterReducer from "../reducers/singleCharacterSlice";
+export const store = configureStore({
+  reducer: {
+    characters: characterReducer,
+    character: singleCharacterReducer,
+  },
 });
-
-export default store;
