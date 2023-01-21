@@ -16,11 +16,13 @@ const Main = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/characters" element={<AllCharacters />} />
-          <Route path="/characters/:id" element={<SingleCharacter />} />
-        </Routes>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/characters" element={<AllCharacters />} />
+            <Route path="/characters/:id" element={<SingleCharacter />} />
+          </Routes>
+        </div>
       </Router>
     </ThemeProvider>
   );

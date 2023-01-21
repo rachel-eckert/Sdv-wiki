@@ -5,7 +5,7 @@ export const fetchSingleCharacter = createAsyncThunk(
   "characters/fetchSingleCharacter",
   async (id) => {
     try {
-      const { data } = axios.get(`/api/characters/${id}`);
+      const { data } = await axios.get(`/api/characters/${id}`);
       return data;
     } catch (err) {
       return err.message;
@@ -15,7 +15,7 @@ export const fetchSingleCharacter = createAsyncThunk(
 
 const singleCharacterSlice = createSlice({
   name: "character",
-  intialState: {},
+  initialState: {},
   reducers: {},
   extraReducers(builder) {
     builder.addCase(fetchSingleCharacter.fulfilled, (state, action) => {

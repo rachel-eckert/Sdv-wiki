@@ -28,6 +28,7 @@ const AllCharacters = () => {
         float: "center",
         justifyContent: "center",
         height: "100vh",
+        mt: 200,
       }}>
       {characters && characters.length
         ? characters.map((character) => {
