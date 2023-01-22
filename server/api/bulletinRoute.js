@@ -3,7 +3,9 @@ const { Bulletin } = require("../db");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allBulletin = await Bulletin.findAll();
+    const allBulletin = await Bulletin.findAll({
+      order: [["bundle", "ASC"]],
+    });
     res.json(allBulletin);
   } catch (err) {
     next(err);

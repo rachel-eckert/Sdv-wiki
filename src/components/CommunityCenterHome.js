@@ -4,6 +4,8 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { TabList, TabContext, TabPanel } from "@mui/lab";
 import BoilerRoom from "./BoilerRoom";
 import Bulletin from "./Bulletin";
+import Craft from "./CraftRoom";
+import FishTank from "./FishTank";
 const theme = createTheme({
   typography: {
     fontFamily: "courier",
@@ -48,6 +50,13 @@ const CommunityCenter = () => {
           </TabPanel>
           <TabPanel value="3">
             <Bulletin />
+          </TabPanel>
+          <TabPanel value="4"></TabPanel>
+          <TabPanel value="5">
+            <Craft />
+          </TabPanel>
+          <TabPanel value="6">
+            <FishTank />
           </TabPanel>
         </TabContext>
       </Box>

@@ -3,7 +3,9 @@ const { Pantry } = require("../db");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allPantry = await Pantry.findAll();
+    const allPantry = await Pantry.findAll({
+      order: [["bundle", "ASC"]],
+    });
     res.json(allPantry);
   } catch (err) {
     next(err);

@@ -3,7 +3,9 @@ const { FishTank } = require("../db");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allFish = await FishTank.findAll();
+    const allFish = await FishTank.findAll({
+      order: [["bundle", "ASC"]],
+    });
     res.json(allFish);
   } catch (err) {
     next(err);

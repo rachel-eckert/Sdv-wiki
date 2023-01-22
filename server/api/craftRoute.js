@@ -3,7 +3,9 @@ const { Craft } = require("../db");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allCraft = await Craft.findAll();
+    const allCraft = await Craft.findAll({
+      order: [["bundle", "ASC"]],
+    });
     res.json(allCraft);
   } catch (err) {
     next(err);

@@ -3,7 +3,9 @@ const { Vault } = require("../db");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allVault = await Vault.findAll();
+    const allVault = await Vault.findAll({
+      order: [["bundle", "ASC"]],
+    });
     res.json(allVault);
   } catch (err) {
     next(err);

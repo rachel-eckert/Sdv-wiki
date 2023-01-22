@@ -3,7 +3,9 @@ const { Boiler } = require("../db");
 
 router.get("/", async (req, res, next) => {
   try {
-    const allBoiler = await Boiler.findAll();
+    const allBoiler = await Boiler.findAll({
+      order: [["bundle", "ASC"]],
+    });
     res.json(allBoiler);
   } catch (err) {
     next(err);

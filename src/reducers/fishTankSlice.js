@@ -11,7 +11,7 @@ export const fetchFishTank = createAsyncThunk("/fishtank", async () => {
 });
 
 const fishTankSlice = createSlice({
-  name: "fishtank",
+  name: "fish",
   initialState: [],
   reducers: {},
   extraReducers(builder) {
