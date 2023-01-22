@@ -25,7 +25,7 @@ const FishTank = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        bgcolor: "#ffffff",
+        bgcolor: "#EFEEFC",
         width: "80%",
         margin: "auto",
       }}>

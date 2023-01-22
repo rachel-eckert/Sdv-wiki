@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchCraft } from "../reducers/craftSlice";
+import { fetchPantry } from "../reducers/pantrySlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -12,12 +12,12 @@ import {
   Typography,
 } from "@mui/material";
 
-const Craft = () => {
+const Pantry = () => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.craft);
+  const items = useSelector((state) => state.pantry);
 
   useEffect(() => {
-    dispatch(fetchCraft());
+    dispatch(fetchPantry());
   }, [dispatch]);
 
   return (
@@ -67,4 +67,4 @@ const Craft = () => {
   );
 };
 
-export default Craft;
+export default Pantry;

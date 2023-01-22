@@ -47,6 +47,7 @@ const AllCharacters = () => {
                       height: 325,
                       padding: "0.1em",
                       alignContent: "center",
+                      bgcolor: "#EFEEFC",
                     }}>
                     <CardMedia
                       component="img"

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchCraft } from "../reducers/craftSlice";
+import { fetchVault } from "../reducers/vaultSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Table,
@@ -12,12 +12,12 @@ import {
   Typography,
 } from "@mui/material";
 
-const Craft = () => {
+const Vault = () => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.craft);
+  const items = useSelector((state) => state.vault);
 
   useEffect(() => {
-    dispatch(fetchCraft());
+    dispatch(fetchVault());
   }, [dispatch]);
 
   return (
@@ -37,10 +37,7 @@ const Craft = () => {
                 Bundle
               </TableCell>
               <TableCell sx={{ fontWeight: "bold", fontSize: "2em" }}>
-                Name
-              </TableCell>
-              <TableCell sx={{ fontWeight: "bold", fontSize: "2em" }}>
-                Quantity
+                Cost
               </TableCell>
             </TableRow>
           </TableHead>
@@ -53,10 +50,7 @@ const Craft = () => {
                   {item.bundle} Bundle
                 </TableCell>
                 <TableCell sx={{ fontWeight: "medium", fontSize: "1.5em" }}>
-                  {item.name}
-                </TableCell>
-                <TableCell sx={{ fontWeight: "medium", fontSize: "1.5em" }}>
-                  {item.quantity}
+                  {item.cost}
                 </TableCell>
               </TableRow>
             ))}
@@ -67,4 +61,4 @@ const Craft = () => {
   );
 };
 
-export default Craft;
+export default Vault;
