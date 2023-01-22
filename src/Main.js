@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import { ThemeProvider, createTheme } from "@mui/material";
 import SingleCharacter from "./components/SingleCharacter";
+import CommunityCenter from "./components/CommunityCenterHome";
+
 const theme = createTheme({
   typography: {
     fontFamily: "Courier",
@@ -21,6 +23,7 @@ const Main = () => {
             <Route path="/" element={<Home />} />
             <Route path="/characters" element={<AllCharacters />} />
             <Route path="/characters/:id" element={<SingleCharacter />} />
+            <Route path="/cc" element={<CommunityCenter />} />
           </Routes>
         </div>
       </Router>

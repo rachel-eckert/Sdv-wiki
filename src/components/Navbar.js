@@ -47,6 +47,13 @@ const Navbar = (props) => {
                   sx={{ mr: 3, ml: 3, color: "#FFFFFF" }}>
                   Characters
                 </Typography>
+                <Typography
+                  variant="h5"
+                  component={Link}
+                  to="/cc"
+                  sx={{ mr: 3, ml: 3, color: "#FFFFFF" }}>
+                  Community Center Guide
+                </Typography>
               </nav>
             </Toolbar>
           </AppBar>

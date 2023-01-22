@@ -1,4 +1,565 @@
-const { db, Character } = require("./server/db");
+const {
+  db,
+  Character,
+  Boiler,
+  Bulletin,
+  Craft,
+  FishTank,
+  Pantry,
+  Vault,
+} = require("./server/db");
+
+const boiler = [
+  {
+    name: "Copper Bar",
+    bundle: "Blacksmith's",
+  },
+  {
+    name: "Iron Bar",
+    bundle: "Blacksmith's",
+  },
+  {
+    name: "Gold Bar",
+    bundle: "Blacksmith's",
+  },
+  {
+    name: "Quartz",
+    bundle: "Geologist's",
+  },
+  {
+    name: "Earth Crystal",
+    bundle: "Geologist's",
+  },
+  {
+    name: "Frozen Tear",
+    bundle: "Geologist's",
+  },
+  {
+    name: "Slime",
+    bundle: "Adventurer's",
+    quantity: 99,
+  },
+  {
+    name: "Bat Wing",
+    bundle: "Adventurer's",
+    quantity: 10,
+  },
+  {
+    name: "Solar Essence",
+    bundle: "Adventurer's",
+  },
+  {
+    name: "Void Essence",
+    bundle: "Adventurer's",
+  },
+];
+
+const bulletin = [
+  {
+    name: "Maple Syrup",
+    bundle: "Chef's",
+  },
+  {
+    name: "Fiddlehead Fern",
+    bundle: "Chef's",
+  },
+  {
+    name: "Truffle",
+    bundle: "Chef's",
+  },
+  {
+    name: "Poppy",
+    bundle: "Chef's",
+  },
+  {
+    name: "Maki Roll",
+    bundle: "Chef's",
+  },
+  {
+    name: "Fried Egg",
+    bundle: "Chef's",
+  },
+  {
+    name: "Red Mushroom",
+    bundle: "Dye",
+  },
+  {
+    name: "Sea Urchin",
+    bundle: "Dye",
+  },
+  {
+    name: "Sunflower",
+    bundle: "Dye",
+  },
+  {
+    name: "Duck Feather",
+    bundle: "Dye",
+  },
+  {
+    name: "Aquamarine",
+    bundle: "Dye",
+  },
+  {
+    name: "Red Cabbage",
+    bundle: "Dye",
+  },
+  {
+    name: "Purple Mushroom",
+    bundle: "Field Research",
+  },
+  {
+    name: "Nautilus Shell",
+    bundle: "Field Research",
+  },
+  {
+    name: "Chub",
+    bundle: "Field Research",
+  },
+  {
+    name: "Frozen Geode",
+    bundle: "Field Research",
+  },
+  {
+    name: "Wheat",
+    bundle: "Fodder",
+    quantity: 10,
+  },
+  {
+    name: "Hay",
+    bundle: "Fodder",
+    quantity: 10,
+  },
+  {
+    name: "Apple",
+    bundle: "Fodder",
+    quantity: 3,
+  },
+];
+
+const craft = [
+  {
+    name: "Wild Horseradish",
+    bundle: "Spring Foraging",
+  },
+  {
+    name: "Daffodil",
+    bundle: "Spring Foraging",
+  },
+  {
+    name: "Leek",
+    bundle: "Spring Foraging",
+  },
+  {
+    name: "Dandelion",
+    bundle: "Spring Foraging",
+  },
+  {
+    name: "Grape",
+    bundle: "Summer Foraging",
+  },
+  {
+    name: "Spice Berry",
+    bundle: "Summer Foraging",
+  },
+  {
+    name: "Sweet Pea",
+    bundle: "Summer Foraging",
+  },
+  {
+    name: "Common Mushroom",
+    bundle: "Fall Foraging",
+  },
+  {
+    name: "Wild Plum",
+    bundle: "Fall Foraging",
+  },
+  {
+    name: "Hazelnut",
+    bundle: "Fall Foraging",
+  },
+  {
+    name: "Blackberry",
+    bundle: "Fall Foraging",
+  },
+  {
+    name: "Winter Root",
+    bundle: "Winter Foraging",
+  },
+  {
+    name: "Crystal Fruit",
+    bundle: "Winter Foraging",
+  },
+  {
+    name: "Snow Yam",
+    bundle: "Winter Foraging",
+  },
+  {
+    name: "Crocus",
+    bundle: "Winter Foraging",
+  },
+  {
+    name: "Wood",
+    bundle: "Construction",
+    quantity: 99,
+  },
+  {
+    name: "Wood",
+    bundle: "Construction",
+    quantity: 99,
+  },
+  {
+    name: "Stone",
+    bundle: "Construction",
+    quantity: 99,
+  },
+  {
+    name: "Hard Wood",
+    bundle: "Construction",
+    quantity: 10,
+  },
+  {
+    name: "Coconut",
+    bundle: "Exotic Foraging",
+  },
+  {
+    name: "Cactus Fruit",
+    bundle: "Exotic Foraging",
+  },
+  {
+    name: "Red Mushroom",
+    bundle: "Exotic Foraging",
+  },
+  {
+    name: "Purple Mushroom",
+    bundle: "Exotic Foraging",
+  },
+  {
+    name: "Maple Syrup",
+    bundle: "Exotic Foraging",
+  },
+  {
+    name: "Oak Resin",
+    bundle: "Exotic Foraging",
+  },
+  {
+    name: "Pine Tar",
+    bundle: "Exotic Foraging",
+  },
+  {
+    name: "Morel",
+    bundle: "Exotic Foraging",
+  },
+];
+
+const fish = [
+  {
+    name: "Sunfish",
+    bundle: "River Fish",
+    season: "Spring, Summer",
+  },
+  {
+    name: "Catfish",
+    bundle: "River Fish",
+    season: "Spring, Summer, Fall",
+  },
+  {
+    name: "Shad",
+    bundle: "River Fish",
+    season: "Spring, Summer, Fall",
+  },
+  {
+    name: "Tiger Trout",
+    bundle: "River Fish",
+    season: "Fall, Winter",
+  },
+  {
+    name: "Largemouth Bass",
+    bundle: "Lake Fish",
+    season: "All",
+  },
+  {
+    name: "Carp",
+    bundle: "Lake Fish",
+    season: "All",
+  },
+  {
+    name: "Bullhead",
+    bundle: "Lake Fish",
+    season: "All",
+  },
+  {
+    name: "Sturgeon",
+    bundle: "Lake Fish",
+    season: "Summer, Winter",
+  },
+  {
+    name: "Sardine",
+    bundle: "Ocean Fish",
+    season: "Spring, Fall, Winter",
+  },
+  {
+    name: "Tuna",
+    bundle: "Ocean Fish",
+    season: "Summer, Winter",
+  },
+  {
+    name: "Red Snapper",
+    bundle: "Ocean Fish",
+    season: "Summer, Fall",
+  },
+  {
+    name: "Tilapia",
+    bundle: "Ocean Fish",
+    season: "Summer, Fall",
+  },
+  {
+    name: "Walleye",
+    bundle: "Night Fishing",
+    season: "Fall",
+  },
+  {
+    name: "Bream",
+    bundle: "Night Fishing",
+    season: "All",
+  },
+  {
+    name: "Eel",
+    bundle: "Night Fishing",
+    season: "Spring, Fall",
+  },
+  {
+    name: "Lobster",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Crayfish",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Crab",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Cockle",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Mussel",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Shrimp",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Snail",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Periwinkle",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Oyster",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Clam",
+    bundle: "Crab Pot",
+    season: "All",
+  },
+  {
+    name: "Pufferfish",
+    bundle: "Specialty Fish",
+    season: "Summer",
+  },
+  {
+    name: "Ghostfish",
+    bundle: "Specialty Fish",
+    season: "All",
+  },
+  {
+    name: "Sandfish",
+    bundle: "Specialty Fish",
+    season: "All",
+  },
+  {
+    name: "Woodskip",
+    bundle: "Specialty Fish",
+    season: "All",
+  },
+];
+
+const pantry = [
+  {
+    name: "Parsnip",
+    bundle: "Spring Crops",
+  },
+  {
+    name: "Green Bean",
+    bundle: "Spring Crops",
+  },
+  {
+    name: "Cauliflower",
+    bundle: "Spring Crops",
+  },
+  {
+    name: "Potato",
+    bundle: "Spring Crops",
+  },
+  {
+    name: "Tomato",
+    bundle: "Summer Crops",
+  },
+  {
+    name: "Hot Pepper",
+    bundle: "Summer Crops",
+  },
+  {
+    name: "Blueberry",
+    bundle: "Summer Crops",
+  },
+  {
+    name: "Melon",
+    bundle: "Summer Crops",
+  },
+  {
+    name: "Corn",
+    bundle: "Fall Crops",
+  },
+  {
+    name: "Eggplant",
+    bundle: "Fall Crops",
+  },
+  {
+    name: "Pumpkin",
+    bundle: "Fall Crops",
+  },
+  {
+    name: "Yam",
+    bundle: "Fall Crops",
+  },
+  {
+    name: "Gold Star Parsnip",
+    bundle: "Quality Crops",
+    quantity: 5,
+  },
+  {
+    name: "Gold Star Melon",
+    bundle: "Quality Crops",
+    quantity: 5,
+  },
+  {
+    name: "Gold Star Pumpkin",
+    bundle: "Quality Crops",
+    quantity: 5,
+  },
+  {
+    name: "Gold Star Corn",
+    bundle: "Quality Crops",
+    quantity: 5,
+  },
+  {
+    name: "Large Milk",
+    bundle: "Animal",
+  },
+  {
+    name: "Large Egg (Brown)",
+    bundle: "Animal",
+  },
+  {
+    name: "Large Egg (White)",
+    bundle: "Animal",
+  },
+  {
+    name: "Large Goat Milk",
+    bundle: "Animal",
+  },
+  {
+    name: "Wool",
+    bundle: "Animal",
+  },
+  {
+    name: "Duck Egg",
+    bundle: "Animal",
+  },
+  {
+    name: "Truffle Oil",
+    bundle: "Artisan",
+  },
+  {
+    name: "Cloth",
+    bundle: "Artisan",
+  },
+  {
+    name: "Goat Cheese",
+    bundle: "Artisan",
+  },
+  {
+    name: "Cheese",
+    bundle: "Artisan",
+  },
+  {
+    name: "Honey",
+    bundle: "Artisan",
+  },
+  {
+    name: "Jelly",
+    bundle: "Artisan",
+  },
+  {
+    name: "Apple",
+    bundle: "Artisan",
+  },
+  {
+    name: "Apricot",
+    bundle: "Artisan",
+  },
+  {
+    name: "Orange",
+    bundle: "Artisan",
+  },
+  {
+    name: "Peach",
+    bundle: "Artisan",
+  },
+  {
+    name: "Pomegranate",
+    bundle: "Artisan",
+  },
+  {
+    name: "Cherry",
+    bundle: "Artisan",
+  },
+];
+
+const vault = [
+  {
+    cost: "2,500g",
+    bundle: "2,500",
+  },
+  {
+    cost: "5,000g",
+    bundle: "5,000",
+  },
+  {
+    cost: "10,000g",
+    bundle: "10,000",
+  },
+  {
+    cost: "25,000g",
+    bundle: "25,000",
+  },
+];
 
 const characters = [
   {
@@ -284,6 +845,36 @@ const seed = async () => {
   const character = await Promise.all(
     characters.map((character) => {
       return Character.create(character);
+    })
+  );
+  const boilers = await Promise.all(
+    boiler.map((item) => {
+      return Boiler.create(item);
+    })
+  );
+  const bulletins = await Promise.all(
+    bulletin.map((item) => {
+      return Bulletin.create(item);
+    })
+  );
+  const crafts = await Promise.all(
+    craft.map((item) => {
+      return Craft.create(item);
+    })
+  );
+  const fishes = await Promise.all(
+    fish.map((item) => {
+      return FishTank.create(item);
+    })
+  );
+  const pantries = await Promise.all(
+    pantry.map((item) => {
+      return Pantry.create(item);
+    })
+  );
+  const vaults = await Promise.all(
+    vault.map((item) => {
+      return Vault.create(item);
     })
   );
 };
