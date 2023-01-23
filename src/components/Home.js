@@ -16,12 +16,13 @@ const Home = () => {
       <br />
       <Typography variant="h6">
         It is currently available for purchase on Steam for all computer
-        operating systems, as well as available for the Nintendo Switch, Xbox
-        One, Steamdeck, Android, and IOS.
+        operating systems. It is also available for most major consoles, as well
+        as IOS and Android Operating Systems.
       </Typography>
       <img
         className="home-image"
         src="https://cdn.akamai.steamstatic.com/steam/apps/413150/capsule_616x353.jpg?t=1666917466"
+        alt="A screenshot from the game Stardew Valley"
       />
     </Box>
   );
