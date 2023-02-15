@@ -1,7 +1,7 @@
 {
   "name": "sdv-wiki",
   "version": "0.0.1",
-  "description": "A review time project",
+  "description": "Mock Stardew Valley Wiki",
   "main": "index.js",
   "scripts": {
     "start": "npm run build-watch & npm run start-server ",
