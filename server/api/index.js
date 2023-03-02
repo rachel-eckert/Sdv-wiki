@@ -1,7 +1,7 @@
 "use strict";
 
 const router = require("express").Router();
-
+//all routes for backend
 router.use("/characters", require("./characterRoute"));
 router.use("/boiler", require("./boilerRoute"));
 router.use("/bulletin", require("./bulletinRoute"));

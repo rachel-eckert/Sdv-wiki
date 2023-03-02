@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { FishTank } = require("../db");
-
+//fetch all
 router.get("/", async (req, res, next) => {
   try {
     const allFish = await FishTank.findAll({
@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
+//fetch one
 router.get("/:id", async (req, res, next) => {
   try {
     const fish = await FishTank.findByPk(req.params.id);

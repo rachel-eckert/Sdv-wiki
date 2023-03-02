@@ -15,7 +15,7 @@ import {
 const AllCharacters = () => {
   const dispatch = useDispatch();
   const characters = useSelector(characterSelector);
-
+  //get all characters
   useEffect(() => {
     dispatch(fetchCharacters());
   }, [dispatch]);
@@ -31,6 +31,7 @@ const AllCharacters = () => {
         height: "100vh",
         mt: 200,
       }}>
+      {/* map through all characters*/}
       {characters && characters.length
         ? characters.map((character) => {
             return (

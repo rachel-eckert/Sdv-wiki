@@ -48,6 +48,7 @@ const FishTank = () => {
             </TableRow>
           </TableHead>
           <TableBody>
+            {/* map through items */}
             {items.map((item) => (
               <TableRow key={item.id}>
                 <TableCell

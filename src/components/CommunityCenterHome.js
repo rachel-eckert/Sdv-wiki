@@ -33,6 +33,7 @@ const CommunityCenter = () => {
       <Box sx={{ width: "100%", typography: "20px" }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            {/* pull in all bundles*/}
             <TabList
               onChange={handleChange}
               textColor="secondary"

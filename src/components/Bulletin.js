@@ -19,7 +19,7 @@ const Bulletin = () => {
   useEffect(() => {
     dispatch(fetchBulletin());
   }, [dispatch]);
-
+  //get all items
   return (
     <Box
       sx={{
@@ -45,6 +45,7 @@ const Bulletin = () => {
             </TableRow>
           </TableHead>
           <TableBody>
+            {/* map through items*/}
             {items.map((item) => (
               <TableRow key={item.id}>
                 <TableCell

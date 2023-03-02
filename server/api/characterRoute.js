@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Character } = require("../db");
-
+//fetch all
 router.get("/", async (req, res, next) => {
   try {
     const allCharacters = await Character.findAll();
@@ -9,7 +9,7 @@ router.get("/", async (req, res, next) => {
     next(err);
   }
 });
-
+//fetch one
 router.get("/:id", async (req, res, next) => {
   try {
     const character = await Character.findByPk(req.params.id);

@@ -12,7 +12,7 @@ const SingleCharacter = () => {
 
   const character = useSelector(selectSingleCharacter);
   const dispatch = useDispatch();
-
+  //get single character
   useEffect(() => {
     dispatch(fetchSingleCharacter(id));
   }, [dispatch]);

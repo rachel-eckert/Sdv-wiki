@@ -19,7 +19,7 @@ const BoilerRoom = () => {
   useEffect(() => {
     dispatch(fetchBoiler());
   }, [dispatch]);
-
+  //get all items
   return (
     <Box
       sx={{
@@ -29,6 +29,7 @@ const BoilerRoom = () => {
         width: "80%",
         margin: "auto",
       }}>
+      {/* map through items*/}
       <TableContainer className="table">
         <Table>
           <TableHead>
