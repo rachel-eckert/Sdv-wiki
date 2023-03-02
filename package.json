@@ -4,10 +4,11 @@
   "description": "Mock Stardew Valley Wiki",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build-watch & npm run start-server & node seed.js",
+    "start": "npm run build-watch & npm run start-server",
     "build-watch": "webpack -w",
     "start-server": "nodemon --watch server -e js,html server/index.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
